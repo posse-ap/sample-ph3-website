@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Question;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,6 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        User::create(['name' => 'admin', 'email' => 'test+1@posse-ap.com', 'password' => bcrypt('password')]);
         $quizzes = $this->listOfQuiz();
         foreach ($quizzes as $quiz) {
             $question = Question::create(['content' => $quiz['question'], 'supplement' => '', 'image' => '']);
