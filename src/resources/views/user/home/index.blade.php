@@ -1,4 +1,4 @@
-<x-user-layout title="ITクイズ">
+<x-user-layout title="学生プログラミングコミュニティ POSSE">
     <x-slot name="header">
         <x-user.common.header />
     </x-slot>
