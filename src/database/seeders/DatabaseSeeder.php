@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\Question;
+use App\Models\Quiz;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -16,22 +17,21 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::create(['name' => 'admin', 'email' => 'test+1@posse-ap.com', 'password' => bcrypt('password')]);
-        $quizzes = $this->listOfQuiz();
-        foreach ($quizzes as $quiz) {
-            $question = Question::create(['content' => $quiz['question'], 'supplement' => '', 'image' => '']);
+        $quizSamples = $this->listOfQuiz();
+
+        $quiz = Quiz::create(['name' => 'サンプルクイズ', 'description' => 'サンプルクイズです', 'image' => '/image/sample.png']);
+        foreach ($quizSamples as $quizSample) {
+            $question = Question::create(['content' => $quizSample['question'], 'supplement' => '', 'image' => '', 'quiz_id' => $quiz->id]);
             $question->choices()->createMany([
-                ['name' => $quiz['choices'][0], 'valid' => $quiz['answer'] === $quiz['choices'][0]],
-                ['name' => $quiz['choices'][1], 'valid' => $quiz['answer'] === $quiz['choices'][1]],
-                ['name' => $quiz['choices'][2], 'valid' => $quiz['answer'] === $quiz['choices'][2]],
+                ['name' => $quizSample['choices'][0], 'valid' => $quizSample['answer'] === $quizSample['choices'][0]],
+                ['name' => $quizSample['choices'][1], 'valid' => $quizSample['answer'] === $quizSample['choices'][1]],
+                ['name' => $quizSample['choices'][2], 'valid' => $quizSample['answer'] === $quizSample['choices'][2]],
             ]);
         }
     }
 
     private function listOfQuiz(): array
     {
-        // シンデレラの靴のサイズについては、原典であるグリム童話には具体的な記述がありません。
-        // ただし、一般的には、19世紀のフランスで流行した「サンダル型の靴に、華やかな飾りとともに、ガラスを使った」という描写から、
-        // 靴のサイズは当時のフランスで一般的だった約22.5cm程度であったという説です。
         return [
             [
                 'question' => '日本の首都はどこでしょう？',
@@ -77,21 +77,6 @@ class DatabaseSeeder extends Seeder
                 'question' => '日本で一番人口が多い都道府県はどこでしょう？',
                 'choices' => ['東京都', '大阪府', '神奈川県'],
                 'answer' => '東京都',
-            ],
-            [
-                'question' => 'シンデレラの靴は何サイズ？',
-                'choices' => ['18cm', '22.5cm', '25cm'],
-                'answer' => '22.5cm',
-            ],
-            [
-                'question' => '「ハリー・ポッター」の主人公ハリーが、学校の通学用に乗る乗り物は何？',
-                'choices' => ['ブルートレイン', 'ポニーカー', '魔法の掃除機'],
-                'answer' => '魔法の掃除機',
-            ],
-            [
-                'question' => 'ゲーム「ポケットモンスター」で、主人公が最初に選べるポケモンはどれ？',
-                'choices' => ['ヒトカゲ', 'ゼニガメ', 'フシギダネ'],
-                'answer' => 'フシギダネ',
             ],
         ];
     }
