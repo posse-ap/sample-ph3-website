@@ -6,6 +6,7 @@ services:
     volumes:
       - ./src:/work/web
 
+  # appやwebにnode.jsをインストールするのは単一責任の原則に反するので、別のコンテナにする
   node:
     image: node:18-alpine
     volumes:
