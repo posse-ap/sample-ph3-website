@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.home.index');
 });
+
+Route::get('/quizzes', [QuizController::class, 'index'])->name('quizzes.index');
+Route::get('/quizzes/detail/{quiz}', [QuizController::class, 'detail'])->name('quizzes.detail');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
