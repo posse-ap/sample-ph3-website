@@ -1,0 +1,77 @@
+@use '../../foundation/variables' as *;
+
+.p-quiz-list {
+  &__container {
+    display: grid;
+    gap: 24px;
+
+    @include mq(md) {
+      gap: 32px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__item {
+    background-color: $color-light;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    transition: 0.3s;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    &__image-wrapper {
+      text-align: center;
+    }
+
+    &__image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    &__title {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.8;
+
+      @include mq(md) {
+        font-size: 24px;
+      }
+    }
+
+    &__description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: $color-gray-dark;
+
+      @include mq(md) {
+        font-size: 16px;
+      }
+    }
+
+    &__button {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: bold;
+      background-color: $color-primary;
+      color: $color-light;
+      padding: 8px 16px;
+      border-radius: 8px;
+      margin-top: 24px;
+
+      @include mq(md) {
+        font-size: 16px;
+      }
+
+      &:hover {
+        background-color: darken($color-primary, 10%);
+      }
+    }
+  }
+}
