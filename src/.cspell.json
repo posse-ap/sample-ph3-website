@@ -1,0 +1,15 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": [
+    "laravel",
+    "phpunit",
+    "fakerphp",
+    "autoload",
+    "autoloader",
+    "pestphp",
+    "dont",
+    "vite"
+  ],
+  "ignorePaths": ["**/node_modules/**", "**/vendor/**"]
+}
